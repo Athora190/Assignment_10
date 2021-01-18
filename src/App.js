@@ -1,24 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
+import Grid from '@material-ui/core/Grid';
+import UserWords from "./components/userInput"
 
 function App() {
+  let appStyle = {
+    height:"100%",
+    width:"100%",
+    display: "flex",
+    alignItems:"center"
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+      <Grid container align="center" justify ="center" direction = "column">
+        <Grid item>
+      <UserWords/>
+      </Grid>
+      </Grid>
+
   );
 }
 
