@@ -51,6 +51,7 @@ class UserWords extends React.Component {
 							<br />
 							<Grid>
 								<TextField
+									disabled
 									fullWidth
 									id="outlined-multiline-static"
 									label="TRANSLATION"
