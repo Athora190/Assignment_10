@@ -1,7 +1,7 @@
-import validateInput from './ValidateInput';
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+import translateText from './APICallFunctions';
 
 class UserWords extends React.Component {
 	constructor(props) {
@@ -16,12 +16,23 @@ class UserWords extends React.Component {
 				value: '',
 			},
 		};
-		// handleChange = event =>{
-		//     this.setState(
-		//         {[event.target.]}
-		//     )
-		//     const InputError = validateInput(this.state.user.)}
-	}
+
+		translateText('', 'en')
+			.then((result) => {
+				console.log(result);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+
+		
+
+	// 	handleSubmit = event =>{
+	// 	    this.setState(
+	// 			// {[e.target.name]:e.target.value});
+		    
+	// 	    // const InputError = validateInput(this.state.user)}
+	// }
 	render() {
 		let style = {
 			color: '#3678FA',
@@ -36,13 +47,14 @@ class UserWords extends React.Component {
 				</div>
 				<div>
 					<Grid md="4">
-						<form noValidate autoComplete="off">
+						<form onSubmit={this.handleSubmit}>
 							<Grid>
 								<TextField
 									fullWidth
 									id="outlined-multiline-static"
 									label="ENTER TEXT"
 									multiline
+									value ={this.user.value}
 									rows={4}
 									placeholder="Please Enter The Text You Would Like To Translate"
 									variant="outlined"
