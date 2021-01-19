@@ -19,15 +19,25 @@ class UserWords extends React.Component {
 		};
 	}
 
+	update_field(event) {
+		// do a convenience error check
+		if (event.target.value.length < 20) {
+			this.setState({
+				user: {
+					value: event.target.value,
+					error: this.state.user.error,
+				},
+			});
+		}
+
+		// implied else
+		// do nothing!
+	}
+
 	handleSubmit = (event) => {
 		event.preventDefault();
-		// this.setState({ event.target.user: event.target.value });
-		// this.setState({
-		// 	user: { value: event.target.value, error: this.state.user.error },
-		// });
 
-		// console.log(this.state.user.value);
-		translateText('HELLO WORLD', 'es')
+		translateText(this.state.user.value, 'es')
 			.then((res) => {
 				console.log(res);
 			})
@@ -56,8 +66,11 @@ class UserWords extends React.Component {
 										fullWidth
 										id="outlined-multiline-static"
 										label="ENTER TEXT"
+										value={this.state.user.value}
 										multiline
-										onChange={(event) => this.state.user}
+										onChange={(event) => {
+											this.update_field(event);
+										}}
 										rows={4}
 										placeholder="Please Enter The Text You Would Like To Translate"
 										variant="outlined"
