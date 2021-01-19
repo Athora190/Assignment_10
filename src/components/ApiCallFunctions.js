@@ -20,12 +20,4 @@ const translateText = async (text, targetLanguage) => {
 		return 0;
 	}
 };
-// export default translateText;
-
-translateText('Good Morning', 'es')
-	.then((res) => {
-		console.log(res);
-	})
-	.catch((err) => {
-		console.log(err);
-	});
+export default translateText;
