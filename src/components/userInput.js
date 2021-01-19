@@ -39,10 +39,18 @@ class UserWords extends React.Component {
 
 		translateText(this.state.user.value, 'es')
 			.then((res) => {
-				console.log(res);
+				this.setState({
+					result: {
+						value: res,
+					},
+				});
 			})
 			.catch((err) => {
-				console.log(err);
+				this.setState({
+					result: {
+						error: err,
+					},
+				});
 			});
 	};
 	render() {
@@ -54,47 +62,51 @@ class UserWords extends React.Component {
 
 		return (
 			<Grid container>
-				<div>
+				<Grid item md={12}>
 					<div>
-						<p style={style}>Word Translater</p>
+						<div>
+							<p style={style}>Word Translater</p>
+						</div>
+						<div>
+							<Grid>
+								<form onSubmit={this.handleSubmit}>
+									<Grid item md={3}>
+										<TextField
+											fullWidth
+											id="outlined-multiline-static"
+											label="ENTER TEXT"
+											value={this.state.user.value}
+											multiline
+											onChange={(event) => {
+												this.update_field(event);
+											}}
+											rows={4}
+											placeholder="Please Enter The Text You Would Like To Translate"
+											variant="outlined"
+										></TextField>
+									</Grid>
+									<br />
+									<Grid md={3}>
+										<TextField
+											disabled
+											fullWidth
+											value={this.state.result.value}
+											id="outlined-multiline-static"
+											label="TRANSLATION"
+											val
+											multiline
+											rows={4}
+											placeholder="TRANSLATION"
+											variant="outlined"
+										></TextField>
+									</Grid>
+									<br />
+									<Submit></Submit>
+								</form>
+							</Grid>
+						</div>
 					</div>
-					<div>
-						<Grid item>
-							<form onSubmit={this.handleSubmit}>
-								<Grid>
-									<TextField
-										fullWidth
-										id="outlined-multiline-static"
-										label="ENTER TEXT"
-										value={this.state.user.value}
-										multiline
-										onChange={(event) => {
-											this.update_field(event);
-										}}
-										rows={4}
-										placeholder="Please Enter The Text You Would Like To Translate"
-										variant="outlined"
-									></TextField>
-								</Grid>
-								<br />
-								<Grid>
-									<TextField
-										disabled
-										fullWidth
-										id="outlined-multiline-static"
-										label="TRANSLATION"
-										multiline
-										rows={4}
-										placeholder="TRANSLATION"
-										variant="outlined"
-									></TextField>
-								</Grid>
-								<br />
-								<Submit></Submit>
-							</form>
-						</Grid>
-					</div>
-				</div>
+				</Grid>
 			</Grid>
 		);
 	}
