@@ -1,7 +1,8 @@
-import validateInput from './ValidateInput';
+//import validateInput from './ValidateInput';
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid'; 
+import translateText from './APICallFunctions';
 
 class UserWords extends React.Component {
 	constructor(props) {
@@ -16,6 +17,14 @@ class UserWords extends React.Component {
 				value: '',
 			},
 		};
+		translateText("Hello World","esp")
+     .then((res) => {
+         console.log(res);
+     })
+     .catch((err) => {
+        console.log(err);
+    });
+
 		// handleChange = event =>{
 		//     this.setState(
 		//         {[event.target.]}
