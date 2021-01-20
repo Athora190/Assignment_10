@@ -69,11 +69,11 @@ class UserWords extends React.Component {
 		};
 
 		return (
-			<Grid container>
+			<Grid align="center" justify="center" container>
 				<Grid item md={12}>
 					<div>
 						<div>
-							<Typography style={style}>Spanish Translater</Typography>
+							<Typography style={style}>Spanish Translator</Typography>
 						</div>
 						<div>
 							<Grid>
