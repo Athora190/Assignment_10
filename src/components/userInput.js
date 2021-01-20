@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import translateText from './APICallFunctions';
 import Submit from './submit';
+import validateInput from './ValidateInput';
 
 class UserWords extends React.Component {
 	constructor(props) {
@@ -23,14 +24,14 @@ class UserWords extends React.Component {
 
 	update_field(event) {
 		// do a convenience error check
-		if (event.target.value.length < 20) {
-			this.setState({
-				user: {
-					value: event.target.value,
-					error: this.state.user.error,
-				},
-			});
-		}
+		const error = validateInput(event.target.value);
+		console.log(error);
+		this.setState({
+			user: {
+				value: event.target.value,
+				error,
+			},
+		});
 
 		// implied else
 		// do nothing!
@@ -39,12 +40,16 @@ class UserWords extends React.Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 
+		if (this.state.user.error) return;
+
+		this.setState({ busy: true });
 		translateText(this.state.user.value, 'es')
 			.then((res) => {
 				this.setState({
 					result: {
 						value: res,
 					},
+					busy: false,
 				});
 			})
 			.catch((err) => {
@@ -52,6 +57,7 @@ class UserWords extends React.Component {
 					result: {
 						error: err,
 					},
+					busy: false,
 				});
 			});
 	};
@@ -85,6 +91,9 @@ class UserWords extends React.Component {
 											rows={4}
 											placeholder="Please Enter The Text You Would Like To Translate"
 											variant="outlined"
+											disabled={this.state.busy}
+											error={this.state.user.error}
+											helperText={this.state.user.error}
 										></TextField>
 									</Grid>
 									<br />
@@ -103,7 +112,9 @@ class UserWords extends React.Component {
 										></TextField>
 									</Grid>
 									<br />
-									<Submit></Submit>
+									<Submit
+										disabled={this.state.busy || !!this.state.user.error}
+									/>
 								</form>
 							</Grid>
 						</div>

@@ -16,8 +16,6 @@ function App() {
 			<Grid item>
 				<UserWords />
 			</Grid>
-			<Submit />
-			<Grid></Grid>
 		</Grid>
 	);
 }
