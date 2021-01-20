@@ -16,6 +16,7 @@ class UserWords extends React.Component {
 			result: {
 				value: '',
 			},
+			busy: false,
 		};
 	}
 
@@ -50,6 +51,11 @@ class UserWords extends React.Component {
 					result: {
 						error: err,
 					},
+				});
+			});
+			.finally(() => {
+				this.setState({
+					busy: false
 				});
 			});
 	};
