@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import translateText from './APICallFunctions';
 import Submit from './submit';
 
@@ -53,11 +54,6 @@ class UserWords extends React.Component {
 					},
 				});
 			});
-			.finally(() => {
-				this.setState({
-					busy: false
-				});
-			});
 	};
 	render() {
 		let style = {
@@ -71,7 +67,7 @@ class UserWords extends React.Component {
 				<Grid item md={12}>
 					<div>
 						<div>
-							<p style={style}>Word Translater</p>
+							<Typography style={style}>Spanish Translater</Typography>
 						</div>
 						<div>
 							<Grid>
