@@ -1,5 +1,5 @@
 function validateInput(word) {
-	if (word.length > 10) {
+	if (word.length > 100) {
 		return 'only 100 characters';
 	}
 	return null;
