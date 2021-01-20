@@ -38,12 +38,14 @@ class UserWords extends React.Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 
+		this.setState({ busy: true })
 		translateText(this.state.user.value, 'es')
 			.then((res) => {
 				this.setState({
 					result: {
 						value: res,
 					},
+					busy: false
 				});
 			})
 			.catch((err) => {
@@ -51,13 +53,14 @@ class UserWords extends React.Component {
 					result: {
 						error: err,
 					},
-				});
-			});
-			.finally(() => {
-				this.setState({
 					busy: false
 				});
 			});
+			// .finally(() => {
+			// 	this.setState({
+			// 		busy: false
+			// 	});
+			// });
 	};
 	render() {
 		let style = {
@@ -89,6 +92,7 @@ class UserWords extends React.Component {
 											rows={4}
 											placeholder="Please Enter The Text You Would Like To Translate"
 											variant="outlined"
+											disabled={this.state.busy}
 										></TextField>
 									</Grid>
 									<br />
@@ -107,7 +111,7 @@ class UserWords extends React.Component {
 										></TextField>
 									</Grid>
 									<br />
-									<Submit></Submit>
+									<Submit disabled={this.state.busy}/>
 								</form>
 							</Grid>
 						</div>
