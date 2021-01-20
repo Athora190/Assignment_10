@@ -59,11 +59,6 @@ class UserWords extends React.Component {
 					busy: false
 				});
 			});
-			// .finally(() => {
-			// 	this.setState({
-			// 		busy: false
-			// 	});
-			// });
 	};
 	render() {
 		let style = {
