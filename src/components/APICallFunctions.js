@@ -2,7 +2,7 @@
 const { Translate } = require('@google-cloud/translate').v2;
 
 // Credentials from api folder
-const CREDENTIALS = require('./api_keys/test.json');
+const CREDENTIALS = require('../api_keys/test.json');
 
 // Configuration for the client
 const translate = new Translate({
